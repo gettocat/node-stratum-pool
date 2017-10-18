@@ -23,17 +23,11 @@
         "TheSeven"
     ],
     "main": "lib/index.js",
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/zone117x/node-stratum-pool.git"
-    },
     "dependencies": {
-        "multi-hashing": "git://github.com/zone117x/node-multi-hashing.git",
-        "bignum": "*",
-        "base58-native": "*",
-        "async": "*"
-    },
-    "engines": {
-        "node": ">=0.10"
+        "base-58": "^0.0.1",
+        "async": "*",
+        "bn.js": "*",
+        "bitpony":"^0.0.1",
+        "split": "^1.0.1"
     }
 }
