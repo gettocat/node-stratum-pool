@@ -1,0 +1,27 @@
+<% layout('./layout') -%>
+
+<div class='row'>
+
+
+    <div class='col-md-12 col-12'>
+        <h3>Last submited by user <a href='/worker/<%=address%>'><%=address%></a>/<%=worker%></h3>
+
+
+        <% submits.forEach(function(submit){ %>
+        <div class='row block'>
+            <div class='col-md-12'>
+                <a href='http://orwellscan.org/block/<%= submit.block_hash %>'><%= submit.block_hash %></a>
+            </div>
+
+            <div class='col-md-12'>
+                height <a href='http://orwellscan.org/height/<%= submit.block_height %>'>#<%= submit.block_height %></a> difficulty <%= submit.difficulty %> amount  <%= submit.block_reward/1e8 %>
+            </div>
+
+        </div>
+        <% }); %>
+
+    </div>
+
+
+
+</div>

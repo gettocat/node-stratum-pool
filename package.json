@@ -22,12 +22,16 @@
         "vekexasia",
         "TheSeven"
     ],
-    "main": "lib/index.js",
+    "main": "index.js",
     "dependencies": {
         "base-58": "^0.0.1",
         "async": "*",
         "bn.js": "*",
-        "bitpony":"^0.0.1",
-        "split": "^1.0.1"
+        "bitpony": "^0.0.1",
+        "split": "^1.0.1",
+        "lokijs": "^1.5.1",
+        "express": "^4.16.2",
+        "ejs": "^2.5.7",
+        "ejs-locals":"^1.0.2"
     }
 }

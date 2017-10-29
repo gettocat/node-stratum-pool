@@ -1,0 +1,81 @@
+<% layout('./layout') -%>
+
+<div class='row'>
+
+    <div class='col-md-6 col-12'>
+        <h3>User workers</h3>
+
+
+        <% stats.forEach(function(st){ %>
+        <div class='row block'>
+
+            <div class='col-md-8'>
+                <a href='/worker/<%= address %>/<%= st.worker %>'><%= address %>/<%= st.worker %></a>
+            </div>
+
+            <div class='col-md-4'>
+                <%= st.shares %> shares ( <%= st.persent %>% )
+            </div>
+
+        </div>
+        <% }); %>
+
+    </div>
+
+    <div class='col-md-6 col-12'>
+        <h3>Unpayed shares</h3>
+        <table class='table table-bordered table-striped'>
+            <tr>
+                <td>Count</td>
+                <td><%= unpayed.count %></td>
+            </tr>
+            <tr>
+                <td>Amount</td>
+                <td><%= unpayed.amount %></td>
+            </tr>
+        </table>
+
+    </div>
+
+    <div class='col-md-6 col-12'>
+        <h3>Last payouts to user</h3>
+
+
+        <% payouts.forEach(function(payout){ %>
+        <div class='row block'>
+
+            <div class='col-md-12'>
+                <a href='http://orwellscan.org/tx/<%= payout.tx %>'><%= payout.tx %></a>
+            </div>
+
+            <div class='col-md-12'>
+                <%= payout.amount %> Orwl, at <%= new Date(payout.added*1000).toDateString() %>
+            </div>
+
+        </div>
+        <% }); %>
+
+    </div>
+
+    <div class='col-md-6 col-12'>
+        <h3>Last submited by user</h3>
+
+
+        <% submits.forEach(function(submit){ %>
+        <div class='row block'>
+            <div class='col-md-12'>
+                <a href='http://orwellscan.org/block/<%= submit.block_hash %>'><%= submit.block_hash %></a>
+            </div>
+
+            <div class='col-md-12'>
+                height <a href='http://orwellscan.org/height/<%= submit.block_height %>'>#<%= submit.block_height %></a> difficulty <%= submit.difficulty %> amount  <%= submit.block_reward/1e8 %>
+            </div>
+
+        </div>
+        <% }); %>
+
+    </div>
+
+
+
+</div>
