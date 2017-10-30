@@ -67,7 +67,7 @@ var config = {
             }
         },
         "3256": {//Another port for your miners to connect to, this port does not use varDiff
-            "diff": 1 //The pool difficulty
+            "diff": 4 //The pool difficulty
         }
     },
     /* Recommended to have at least two daemon instances running in case one drops out-of-sync
