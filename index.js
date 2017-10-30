@@ -36,18 +36,19 @@ pool.on('share', function (isValidShare, isValidBlock, data, daemon) {
     //add share to db,
     //update user balance
 
+    if (isValidBlock)//now pay only for right block founded, when nw hr grown up - will be pay for all valid shares.
+        manager.share.updateShare.apply(null, [data]);
+
     //todo, save stats about worker:
     if (isValidBlock)
         console.log('Block found');
     else if (isValidShare) {
         console.log('Valid share submitted');
-
-        manager.share.updateShare.apply(null, [data]);
     } else if (data.blockHash)
         console.log('We thought a block was found but it was rejected by the daemon');
     else
         console.log('Invalid share submitted')
-    
+
     manager.share.calc(daemon);
     console.log('share data: ' + JSON.stringify(data));
 });
