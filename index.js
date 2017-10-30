@@ -36,7 +36,7 @@ pool.on('share', function (isValidShare, isValidBlock, data, daemon) {
     //add share to db,
     //update user balance
 
-    if (isValidBlock)//now pay only for right block founded, when nw hr grown up - will be pay for all valid shares.
+    if (data.blockHash)//now pay only for right block founded, when nw hr grown up - will be pay for all valid shares.
         manager.share.updateShare.apply(null, [data]);
 
     //todo, save stats about worker:
@@ -50,7 +50,7 @@ pool.on('share', function (isValidShare, isValidBlock, data, daemon) {
         console.log('Invalid share submitted')
 
     manager.share.calc(daemon);
-    console.log('share data: ' + JSON.stringify(data));
+    console.log('share data: ' + JSON.stringify(data), 'isValidBlock:'+isValidBlock, "isValidShare:"+isValidShare);
 });
 
 pool.on('log', function (severity, logKey, logText) {
