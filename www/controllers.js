@@ -25,6 +25,7 @@ module.exports = {
 
         var submits = sharedb.findAndSort({}, "added", "desc", 100, 0);
         var payouts = txdb.findAndSort({payed: 1}, "added", "desc", 100, 0);
+
         res.render('index', {
             stats: stats,
             submits: submits,
@@ -78,7 +79,7 @@ module.exports = {
             unpcnt++;
         }
 
-        res.render('worker', {
+        var data = {
             unpayed: {
                 count: unpcnt,
                 amount: unpamount
@@ -88,7 +89,12 @@ module.exports = {
             submits: submits,
             payouts: payouts,
             title: 'Info about address ' + req.params.address
-        })
+        };
+
+        if (req.query.format == 'json') {
+            res.write(JSON.stringify(data));
+        } else
+            res.render('worker', data)
     },
     workerDetails: function (req, res) {
         //req.params.address
