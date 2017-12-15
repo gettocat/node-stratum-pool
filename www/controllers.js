@@ -34,6 +34,7 @@ module.exports = {
 
         if (req.query.format == 'json' || req.originalUrl.indexOf("?format=json") >= 0) {
             res.write(JSON.stringify(data));
+            res.end();
         } else
             res.render('index', data)
     },
@@ -97,6 +98,7 @@ module.exports = {
 
         if (req.params.format == 'json' || req.originalUrl.indexOf("?format=json") >= 0) {
             res.write(JSON.stringify(data));
+            res.end();
         } else
             res.render('worker', data)
     },
@@ -117,6 +119,7 @@ module.exports = {
 
         if (req.params.format == 'json' || req.originalUrl.indexOf("?format=json") >= 0) {
             res.write(JSON.stringify(data));
+            res.end();
         } else
             res.render('worker_worker', data)
     },
