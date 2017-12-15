@@ -25,13 +25,17 @@ module.exports = {
 
         var submits = sharedb.findAndSort({}, "added", "desc", 100, 0);
         var payouts = txdb.findAndSort({payed: 1}, "added", "desc", 100, 0);
-
-        res.render('index', {
+        var data = {
             stats: stats,
             submits: submits,
             payouts: payouts,
             title: 'main page'
-        })
+        };
+
+        if (req.params.format == 'json') {
+            res.write(JSON.stringify(data));
+        } else
+            res.render('index', data)
     },
     worker: function (req, res) {
         //req.params.address
@@ -91,7 +95,7 @@ module.exports = {
             title: 'Info about address ' + req.params.address
         };
 
-        if (req.query.format == 'json') {
+        if (req.params.format == 'json') {
             res.write(JSON.stringify(data));
         } else
             res.render('worker', data)
@@ -104,14 +108,17 @@ module.exports = {
                 {address: req.params.address},
                 {'worker': req.params.worker}
             ]}, "added", "desc", 100, 0);
-
-
-        res.render('worker_worker', {
+        var data = {
             worker: req.params.worker,
             address: req.params.address,
             submits: submits,
             title: 'Info about address ' + req.params.address + " and worker " + req.params.worker
-        })
+        }
+
+        if (req.params.format == 'json') {
+            res.write(JSON.stringify(data));
+        } else
+            res.render('worker_worker', data)
     },
     payout: function () {
 
