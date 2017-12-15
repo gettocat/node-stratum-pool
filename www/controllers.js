@@ -32,7 +32,7 @@ module.exports = {
             title: 'main page'
         };
 
-        if (req.query("format") == 'json' || req.query.format == 'json') {
+        if (req.query("format") == 'json' || req.query.format == 'json' || req.originalUrl.indexOf("?format=json") >= 0) {
             res.write(JSON.stringify(data));
         } else
             res.render('index', data)
@@ -95,7 +95,7 @@ module.exports = {
             title: 'Info about address ' + req.params.address
         };
 
-        if (req.params.format == 'json') {
+        if (req.params.format == 'json' || req.originalUrl.indexOf("?format=json") >= 0) {
             res.write(JSON.stringify(data));
         } else
             res.render('worker', data)
@@ -115,7 +115,7 @@ module.exports = {
             title: 'Info about address ' + req.params.address + " and worker " + req.params.worker
         }
 
-        if (req.params.format == 'json') {
+        if (req.params.format == 'json' || req.originalUrl.indexOf("?format=json") >= 0) {
             res.write(JSON.stringify(data));
         } else
             res.render('worker_worker', data)
