@@ -32,7 +32,7 @@ module.exports = {
             title: 'main page'
         };
 
-        if (req.query("format") == 'json' || req.query.format == 'json' || req.originalUrl.indexOf("?format=json") >= 0) {
+        if (req.query.format == 'json' || req.originalUrl.indexOf("?format=json") >= 0) {
             res.write(JSON.stringify(data));
         } else
             res.render('index', data)
