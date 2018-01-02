@@ -7,8 +7,17 @@ require("./www/index")
 
 var pool = Stratum.createPool(config, function (ip, port, workerName, password, callback) { //stratum authorization function
     console.log("Authorize " + workerName + ":" + password + "@" + ip);
-    var data = manager.user.getWorkerName(workerName);
-
+    try {
+        var data = manager.user.getWorkerName(workerName);
+    } catch (e) {
+        callback({
+            error: 'invalid format of login, need rewardAddress/workerId',
+            authorized: false,
+            disconnect: true
+        });
+        return;
+    }
+    
     if (!data.isValidAddress) {
         callback({
             error: 'invalid format of login, need rewardAddress/workerId',
@@ -50,7 +59,7 @@ pool.on('share', function (isValidShare, isValidBlock, data, daemon) {
         console.log('Invalid share submitted')
 
     manager.share.calc(daemon);
-    console.log('share data: ' + JSON.stringify(data), 'isValidBlock:'+isValidBlock, "isValidShare:"+isValidShare);
+    console.log('share data: ' + JSON.stringify(data), 'isValidBlock:' + isValidBlock, "isValidShare:" + isValidShare);
 });
 
 pool.on('log', function (severity, logKey, logText) {
